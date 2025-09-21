@@ -1,1 +1,1 @@
-# Ocean - MC Plugin Builder
+# Ocean - Free "Premium" MC Plugins
