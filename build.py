@@ -1,6 +1,22 @@
 import subprocess
 import os
 
+hidden_imports = [
+    "PIL._tkinter_finder",
+    "tkinter",
+    "tkinter.ttk",
+    "tkinter.constants",
+    "tkinter.messagebox",
+    "tkinter.scrolledtext",
+    "tkinter.filedialog",
+    "tkinter.simpledialog",
+    "tkinter.font",
+    "ttkbootstrap",
+    "ttkbootstrap.locales",
+    "ttkbootstrap.localization.msgs",
+    "ttkbootstrap.localization.msgcat",
+]
+
 # Base PyInstaller command
 cmd = [
     "pyinstaller",
@@ -9,10 +25,12 @@ cmd = [
     "--noconsole",
     "--add-data=icon.png:.",
     "--icon=icon.png",
-    "main.py",
-    # Always include this so ttkbootstrap + Pillow works
-    "--hidden-import=PIL._tkinter_finder",
+    "main.py"
 ]
+
+for pkg in hidden_imports:
+    if f"--hidden-import={pkg}" not in cmd:
+                cmd.append(f"--hidden-import={pkg}")
 
 # Read requirements.txt if it exists
 if os.path.exists("requirements.txt"):
