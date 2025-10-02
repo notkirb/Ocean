@@ -18,7 +18,7 @@ def get_tcl_tk_data():
     possible_tk = [
         os.path.join(sys.prefix, "tk"),
         os.path.join(sys.prefix, "lib", "tk"),
-        "/opt/hostedtoolcache/Python/3.11.13/x64/lib/python3.11/tkinter"
+        "/opt/hostedtoolcache/Python/3.11.13/x64/lib/python3.11/tkinter",
         "/usr/share/tcltk/tk8.6",
         "/usr/lib/tk8.6",
         "/usr/share/tk8.6",
