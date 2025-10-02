@@ -34,6 +34,8 @@ jobs:
 
       - name: Build executable
         run: |
+          python -c "import tkinter; import os; print(os.path.dirname(tkinter.__file__))"
+          python -c "import tkinter; print(tkinter.Tcl().eval('info library'))"
           python build.py
 
       - name: Upload binary artifact
