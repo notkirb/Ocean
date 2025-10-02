@@ -7,34 +7,37 @@ import tkinter
 def get_tcl_tk_data():
     paths = []
 
-    # Tcl and Tk library are in different places on some distros
-    possible_tcl = [
+    # Tcl library
+    tcl_paths = [
+        "/usr/share/tcltk/tcl8.6",  # Ubuntu CI
+        "/usr/lib/tcl8.6",
         os.path.join(sys.prefix, "tcl"),
         os.path.join(sys.prefix, "lib", "tcl"),
-        "/usr/share/tcltk/tcl8.6",
-        "/usr/lib/tcl8.6",
-        "/usr/share/tcltk",
     ]
-    possible_tk = [
-        os.path.join(sys.prefix, "tk"),
-        os.path.join(sys.prefix, "lib", "tk"),
-        "/opt/hostedtoolcache/Python/3.11.13/x64/lib/python3.11/tkinter",
+
+    # Tk library
+    tk_paths = [
+        "/opt/hostedtoolcache/Python/3.11.13/x64/lib/python3.11/tkinter",  # Ubuntu CI
         "/usr/share/tcltk/tk8.6",
         "/usr/lib/tk8.6",
-        "/usr/share/tk8.6",
+        os.path.join(sys.prefix, "tk"),
+        os.path.join(sys.prefix, "lib", "tk"),
     ]
 
-    for path in possible_tcl:
+    # Pick the first existing Tcl path
+    for path in tcl_paths:
         if os.path.exists(path):
-            paths.append(f"{path}{os.pathsep}tcl")
+            paths.append(f"{path}:tcl")
             break
 
-    for path in possible_tk:
+    # Pick the first existing Tk path
+    for path in tk_paths:
         if os.path.exists(path):
-            paths.append(f"{path}{os.pathsep}tk")
+            paths.append(f"{path}:tk")
             break
 
     return paths
+
 
 
 # Imports that aren't explicitly listed in requirements.txt
