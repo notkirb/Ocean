@@ -26,6 +26,10 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, scrolledtext
 import shlex
 
+import ttkbootstrap.localization
+ttkbootstrap.localization.initialize_localities = bool
+
+
 # ---------- Configuration ----------
 TIMEOUT = 15
 USER_AGENT = "Mozilla/5.0 (compatible; PluginBuilder/1.0; OceanPluginBuilder/1.0)"
